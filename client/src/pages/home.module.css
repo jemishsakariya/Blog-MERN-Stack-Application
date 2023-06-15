@@ -1,1 +1,40 @@
-.container{}
+.container {
+    display: flex;
+    align-items: center;
+    gap: 100px;
+}
+
+.item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.title {
+    font-size: 62px;
+    background: linear-gradient(to bottom, #194c33, #bbb);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.img {
+    width: 90%;
+    height: 500px;
+    object-fit: cover;
+}
+
+.desc {
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.button {
+    padding: 20px;
+    cursor: pointer;
+    background-color: #53c28b;
+    border: none;
+    border-radius: 5px;
+    width: max-content;
+    color: white;
+}
