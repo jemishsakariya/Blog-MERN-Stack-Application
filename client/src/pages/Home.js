@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./home.module.css";
 import hero from "../assets/hero.png";
+import Button from "../components/button/Button";
 
 const Home = () => {
   return (
@@ -13,7 +14,7 @@ const Home = () => {
           Turning your Idea into Reality.We bring together the teams from the
           global tech industry.
         </p>
-        <button className={styles.button}>See Our Works</button>
+        <Button url={"/portfolio"} text={"See Our Works"} />
       </div>
       <div className={styles.item}>
         <img src={hero} alt="imgHero" className={styles.img} />
