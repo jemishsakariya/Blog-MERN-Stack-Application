@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./navbar.module.css";
+import DarkModeToggle from "../darkmodeToggle/DarkModeToggle";
 
 const links = [
   {
@@ -43,6 +44,7 @@ const Navbar = () => {
           IdeaLinking
         </Link>
         <div className={styles.links}>
+          <DarkModeToggle />
           {links.map((link) => {
             return (
               <Link to={link.url} key={link.id} className={styles.link}>
