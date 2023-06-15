@@ -38,15 +38,22 @@ const links = [
 const Navbar = () => {
   return (
     <>
-      <Link to="/">IdeaLinking</Link>
-      <div>
-        {links.map((link) => {
-          return (
-            <Link to={link.url} key={link.id}>
-              {link.title}
-            </Link>
-          );
-        })}
+      <div className={styles.container}>
+        <Link to="/" className={styles.logo}>
+          IdeaLinking
+        </Link>
+        <div className={styles.links}>
+          {links.map((link) => {
+            return (
+              <Link to={link.url} key={link.id} className={styles.link}>
+                {link.title}
+              </Link>
+            );
+          })}
+          <button className={styles.logout} onClick={() => {}}>
+            Logout
+          </button>
+        </div>
       </div>
     </>
   );
