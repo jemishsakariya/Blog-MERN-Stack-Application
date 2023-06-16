@@ -7,6 +7,14 @@ require("dotenv").config();
 const PORT = process.env.PORT || 4000;
 //
 
+const cors = require("cors");
+const corsOptions = {
+  origin: true,
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+
 const blog = require("./routes/blogRoutes");
 // mount
 app.use("/api/v1", blog);

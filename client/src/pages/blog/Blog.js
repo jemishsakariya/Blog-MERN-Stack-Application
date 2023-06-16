@@ -7,15 +7,15 @@ const Blog = () => {
   const [data, setData] = useState([]);
 
   const getData = async () => {
-    const res = await fetch("https://dummyjson.com/products");
+    const res = await fetch("http://localhost:4000/api/v1/getpost");
     if (!res.ok) {
       throw new Error("Failed to fetch data");
     }
 
     const result = await res.json();
-    // console.log(result.products);
+    // console.log(result.post);
 
-    setData(result.products);
+    setData(result.post);
   };
 
   useEffect(() => {
@@ -27,20 +27,16 @@ const Blog = () => {
       {data.map((item) => {
         return (
           <Link
-            to={`/blog/${item.id}`}
+            to={`/blog/${item._id}`}
             className={styles.container}
-            key={item.id}
+            key={item._id}
           >
             <div className={styles.imageContainer}>
-              <img
-                src={`${item.images[0]}`}
-                alt="blogImg"
-                className={styles.img}
-              />
+              <img src={`${item.img}`} alt="blogImg" className={styles.img} />
             </div>
             <div className={styles.content}>
               <h1 className={styles.title}>{item.title}</h1>
-              <p className={styles.desc}>{item.description}</p>
+              <p className={styles.desc}>{item.desc}</p>
             </div>
           </Link>
         );

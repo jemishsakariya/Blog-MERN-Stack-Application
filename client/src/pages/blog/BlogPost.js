@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./blogpost.module.css";
-import avatarImg from "../../assets/avatar.jpg";
-import blogImg from "../../assets/blogImg.jpg";
+// import avatarImg from "../../assets/avatar.jpg";
+// import blogImg from "../../assets/blogImg.jpg";
 import { useParams } from "react-router-dom";
 
 const BlogPost = () => {
@@ -10,61 +10,40 @@ const BlogPost = () => {
   const { id } = useParams();
 
   const getData = async () => {
-    const res = await fetch(`https://dummyjson.com/products/${id}`);
+    const res = await fetch(`http://localhost:4000/api/v1/getpost/${id}`);
     if (!res.ok) {
       throw new Error("Failed to fetch data");
     }
 
     const result = await res.json();
-    // console.log(result);
+    // console.log(result.post);
 
-    setData(result);
+    setData(result.post);
   };
 
   useEffect(() => {
     getData();
-  }, []);
+  });
 
   return (
     <>
       <div className={styles.top}>
         <div className={styles.info}>
           <h1 className={styles.title}>{data.title}</h1>
-          <p className={styles.desc}>{data.description}</p>
+          <p className={styles.desc}>{data.desc}</p>
           <div className={styles.avatarBlock}>
             <div className={styles.author}>
-              <img src={avatarImg} alt="autherImg" className={styles.avatar} />
+              <img src={data.img} alt="autherImg" className={styles.avatar} />
             </div>
-            <span>{data.brand}</span>
+            <span>{data.username}</span>
           </div>
         </div>
         <div className={styles.imageContainer}>
-          <img src={blogImg} alt="img" className={styles.img} />
+          <img src={data.img} alt="img" className={styles.img} />
         </div>
       </div>
       <div className={styles.content}>
-        <p className={styles.text}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga
-          perferendis architecto odit ipsum officia dolorum. Eum repellendus
-          tempore, nesciunt illo ipsa iste? Ut totam perspiciatis iure eos
-          aperiam doloribus nobis. Lorem ipsum dolor sit amet. Lorem ipsum dolor
-          sit amet consectetur adipisicing elit. Id, ex.
-          <br />
-          <br />
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet velit
-          similique ipsa quasi! Sapiente amet consectetur id soluta, cumque est
-          repudiandae vero ab itaque commodi explicabo nihil a, doloribus velit
-          aut nisi vitae.
-          <br />
-          <br />
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi,
-          in dolor. Ut voluptas illo ea animi in molestiae culpa. Nihil quaerat
-          magnam nesciunt labore, ab deleniti? Voluptatibus perferendis dolor
-          accusamus minima distinctio amet cupiditate maiores accusantium illum
-          culpa ut, odit a. Aperiam repellat ut et voluptate atque. Dolore
-          facere delectus iste sequi ducimus. Nisi sit a odio laudantium, amet
-          natus?
-        </p>
+        <p className={styles.text}>{data.content}</p>
       </div>
     </>
   );
