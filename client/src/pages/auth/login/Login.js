@@ -28,6 +28,8 @@ const Login = () => {
       if (response.ok) {
         // Login successful
         // Redirect or perform any necessary actions
+        document.cookie = "isLoggedIn=true; path=/";
+        // console.log(document.cookie);
         setSuccess("Login successful!");
         navigate("/");
       } else {

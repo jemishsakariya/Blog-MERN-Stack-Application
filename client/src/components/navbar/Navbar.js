@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./navbar.module.css";
 import DarkModeToggle from "../darkmodeToggle/DarkModeToggle";
 
@@ -37,6 +37,15 @@ const links = [
 ];
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // Perform the logout logic here
+    document.cookie = "isLoggedIn=false; path=/";
+    // console.log(document.cookie);
+    navigate("/dashboard/login");
+  };
+
   return (
     <>
       <div className={styles.container}>
@@ -52,9 +61,11 @@ const Navbar = () => {
               </Link>
             );
           })}
-          <button className={styles.logout} onClick={() => {}}>
-            Logout
-          </button>
+          {document.cookie === "isLoggedIn=true" && (
+            <button className={styles.logout} onClick={handleLogout}>
+              Logout
+            </button>
+          )}
         </div>
       </div>
     </>
