@@ -41,3 +41,7 @@ a {
   flex-direction: column;
   justify-content: space-between;
 }
+
+::selection {
+  color: #65eca9;
+}

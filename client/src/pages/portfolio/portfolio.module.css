@@ -18,14 +18,20 @@
 
 .item:nth-child(1) {
     background: url("../../assets/illustration.png");
+    filter: grayscale(100%);
+    transition: all 0.4s ease;
 }
 
 .item:nth-child(2) {
     background: url("../../assets/websites.jpg");
+    filter: grayscale(100%);
+    transition: all 0.4s ease;
 }
 
 .item:nth-child(3) {
     background: url("../../assets/apps.jpg");
+    filter: grayscale(100%);
+    transition: all 0.4s ease;
 }
 
 .title {
@@ -39,4 +45,19 @@
 
 .item:hover .title {
     color: #53c28b;
+}
+
+.item:nth-child(1):hover {
+    border: 5px solid #53c28b;
+    filter: grayscale(0);
+}
+
+.item:nth-child(2):hover {
+    border: 5px solid #53c28b;
+    filter: grayscale(0);
+}
+
+.item:nth-child(3):hover {
+    border: 5px solid #53c28b;
+    filter: grayscale(0);
 }

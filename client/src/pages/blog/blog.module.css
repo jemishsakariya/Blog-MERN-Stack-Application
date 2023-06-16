@@ -5,6 +5,13 @@
     margin-bottom: 50px;
 }
 
+/* .container:hover {
+    border: 4px solid #3dc07e;
+    margin: 0 -4px;
+    margin-top: -4px;
+    margin-bottom: 46px;
+} */
+
 .imageContainer {
     width: 400px;
     height: 250px;

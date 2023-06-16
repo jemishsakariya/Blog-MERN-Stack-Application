@@ -50,3 +50,13 @@
     font-size: 18px;
     font-weight: bold;
 }
+
+.input:hover,
+.textArea:hover {
+    border: 3px solid #3dc07e;
+}
+
+.input:focus,
+.textArea:focus {
+    border: 3px solid #3dc07e;
+}
