@@ -57,3 +57,31 @@ exports.getPostById = async (req, res) => {
     });
   }
 };
+
+exports.deletePostById = async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    const posts = await Post.findByIdAndDelete(id);
+
+    const updatedPost = await Post.findByIdAndUpdate(
+      id,
+      {
+        $push: { likes: posts._id },
+      },
+      { new: true }
+    );
+
+    res.status(200).json({
+      success: true,
+      message: "Successfull Deleted Post By Id",
+      post: updatedPost,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      error: "Error While Deleting Post",
+    });
+  }
+};

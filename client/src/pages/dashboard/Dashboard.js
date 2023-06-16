@@ -1,30 +1,120 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./dashboard.module.css";
 
 const Dashboard = () => {
   const [data, setData] = useState([]);
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
-
-  const getData = async () => {
-    setLoading(true);
-    const res = await fetch("https://dummyjson.com/products");
-    if (!res.ok) {
-      throw new Error("Failed to fetch data");
-    }
-
-    const result = await res.json();
-    // console.log(result.products);
-
-    setData(result.products);
-    setLoading(false);
-  };
+  const [err, setErr] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
+    const getData = async () => {
+      setIsLoading(true);
+      const res = await fetch("http://localhost:4000/api/v1/getpost", {
+        cache: "no-store",
+      });
+
+      if (!res.ok) {
+        setErr(true);
+      }
+
+      const data = await res.json();
+
+      setData(data.post);
+      setIsLoading(false);
+    };
     getData();
   }, []);
 
-  return <div className={styles.container}>Dashboard</div>;
+  if (document.cookie === "isLoggedIn=false") {
+    navigate("/dashboard/login");
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const title = e.target[0].value;
+    const desc = e.target[1].value;
+    const img = e.target[2].value;
+    const content = e.target[3].value;
+
+    try {
+      await fetch("http://localhost:4000/api/v1/createpost", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title,
+          desc,
+          img,
+          content,
+          username: "N/A",
+        }),
+      });
+      e.target.reset();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      await fetch(`http://localhost:4000/api/v1/getpost/${id}`, {
+        method: "DELETE",
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  if (document.cookie === "isLoggedIn=true") {
+    return (
+      <div className={styles.container}>
+        <div className={styles.posts}>
+          {isLoading
+            ? "loading"
+            : data?.map((post) => (
+                <div className={styles.post} key={post._id}>
+                  <div className={styles.imgContainer}>
+                    <img src={post.img} alt="" width={200} height={100} />
+                  </div>
+                  <h2 className={styles.postTitle}>{post.title}</h2>
+                  <span
+                    className={styles.delete}
+                    onClick={() => {
+                      handleDelete(post._id);
+                      window.location.reload();
+                    }}
+                  >
+                    X
+                  </span>
+                </div>
+              ))}
+        </div>
+        <form className={styles.new} onSubmit={handleSubmit}>
+          <h1>Add New Post</h1>
+          <input type="text" placeholder="Title" className={styles.input} />
+          <input type="text" placeholder="Desc" className={styles.input} />
+          <input type="text" placeholder="Image" className={styles.input} />
+          <textarea
+            placeholder="Content"
+            className={styles.textArea}
+            cols="30"
+            rows="10"
+          ></textarea>
+          <button
+            className={styles.button}
+            onClick={() => {
+              window.location.reload();
+            }}
+          >
+            Send
+          </button>
+        </form>
+      </div>
+    );
+  }
 };
 
 export default Dashboard;
