@@ -15,12 +15,17 @@
 .imageContainer {
     width: 400px;
     height: 250px;
+    flex: 1/2;
 }
 
 .img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.content {
+    flex: 1;
 }
 
 .title {
