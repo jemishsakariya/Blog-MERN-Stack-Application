@@ -15,9 +15,15 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
+const cookieParser = require("cookie-parser");
+app.use(cookieParser());
+
+//
 const blog = require("./routes/blogRoutes");
-// mount
 app.use("/api/v1", blog);
+
+const user = require("./routes/authRoutes");
+app.use("/auth", user);
 
 //
 app.listen(PORT, () => {

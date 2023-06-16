@@ -11,6 +11,15 @@ const postSchema = new mongoose.Schema(
       type: String,
       unique: true,
       required: true,
+      validate: {
+        validator: function (email) {
+          return String(email)
+            .toLowerCase()
+            .match(
+              /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            );
+        },
+      },
     },
     password: {
       type: String,
@@ -20,4 +29,4 @@ const postSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Post", postSchema);
+module.exports = mongoose.model("User", postSchema);

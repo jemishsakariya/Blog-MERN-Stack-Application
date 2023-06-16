@@ -34,12 +34,12 @@ function App() {
 
             <Route path="/dashboard" element={<Dashboard />} />
 
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/dashboard/register" element={<Register />} />
+            <Route path="/dashboard/login" element={<Login />} />
           </Routes>
           <Footer />
         </Suspense>
-      </div>  
+      </div>
     </>
   );
 }
