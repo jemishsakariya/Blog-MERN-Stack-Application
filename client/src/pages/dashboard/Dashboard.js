@@ -9,10 +9,6 @@ const Dashboard = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  if (document.cookie === "isLoggedIn=false") {
-    navigate("/dashboard/login");
-  }
-
   useEffect(() => {
     const getData = async () => {
       setIsLoading(true);

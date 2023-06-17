@@ -62,20 +62,15 @@ exports.deletePostById = async (req, res) => {
   try {
     const id = req.params.id;
 
-    const posts = await Post.findByIdAndDelete(id);
+    const post = await Post.findByIdAndDelete(id);
 
-    const updatedPost = await Post.findByIdAndUpdate(
-      id,
-      {
-        $push: { likes: posts._id },
-      },
-      { new: true }
-    );
+    const updatedPost = await Post.findByIdAndUpdate(id);
 
     res.status(200).json({
       success: true,
       message: "Successfull Deleted Post By Id",
-      post: updatedPost,
+      post: post,
+      updatedPost: updatedPost,
     });
   } catch (error) {
     console.error(error);

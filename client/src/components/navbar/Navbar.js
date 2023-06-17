@@ -46,7 +46,6 @@ const Navbar = () => {
     // Perform the logout logic here
 
     setCookie("isLoggedIn", "", { expires: new Date(0) });
-    window.location.reload();
 
     navigate("/dashboard/login");
   };
