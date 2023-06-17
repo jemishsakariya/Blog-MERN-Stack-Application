@@ -33,7 +33,7 @@ const Register = () => {
 
       if (response.ok) {
         // Registration successful
-        // Redirect or perform any necessary actions
+        localStorage.setItem("name", JSON.stringify(name));
         navigate("/dashboard/login");
       } else {
         // Registration failed

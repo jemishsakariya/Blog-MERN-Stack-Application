@@ -28,10 +28,10 @@ const Login = () => {
       if (response.ok) {
         // Login successful
         // Redirect or perform any necessary actions
-        document.cookie = "isLoggedIn=true; path=/";
+        document.cookie = "isLoggedIn=true";
         // console.log(document.cookie);
         setSuccess("Login successful!");
-        navigate("/");
+        navigate("/dashboard");
       } else {
         // Login failed
         setError("Invalid email or password");

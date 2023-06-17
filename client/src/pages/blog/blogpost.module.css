@@ -66,3 +66,8 @@
     align-items: center;
     gap: 10px;
 }
+
+.text {
+    white-space: pre;
+    font-weight: 400;
+}

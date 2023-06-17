@@ -61,9 +61,18 @@ const Navbar = () => {
               </Link>
             );
           })}
-          {document.cookie === "isLoggedIn=true" && (
+          {document.cookie === "isLoggedIn=true" ? (
             <button className={styles.logout} onClick={handleLogout}>
               Logout
+            </button>
+          ) : (
+            <button
+              className={styles.logout}
+              onClick={() => {
+                navigate("/dashboard/login");
+              }}
+            >
+              Login
             </button>
           )}
         </div>

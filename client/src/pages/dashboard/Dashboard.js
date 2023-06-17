@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./dashboard.module.css";
+import Button from "../../components/button/Button";
 
 const Dashboard = () => {
   const [data, setData] = useState([]);
   const [err, setErr] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+
+  if (document.cookie === "isLoggedIn=false") {
+    navigate("/dashboard/login");
+  }
 
   useEffect(() => {
     const getData = async () => {
@@ -27,10 +32,6 @@ const Dashboard = () => {
     getData();
   }, []);
 
-  if (document.cookie === "isLoggedIn=false") {
-    navigate("/dashboard/login");
-  }
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const title = e.target[0].value;
@@ -49,7 +50,7 @@ const Dashboard = () => {
           desc,
           img,
           content,
-          username: "N/A",
+          username: JSON.parse(localStorage.getItem("name")),
         }),
       });
       e.target.reset();
@@ -113,6 +114,17 @@ const Dashboard = () => {
           </button>
         </form>
       </div>
+    );
+  } else {
+    return (
+      <>
+        <div className={styles.else}>
+          <h1 className={styles.elseHeading}>Please Login First</h1>
+          <div className={styles.elseButton}>
+            <Button url={"/dashboard/login"} text={"Login"} />
+          </div>
+        </div>
+      </>
     );
   }
 };
