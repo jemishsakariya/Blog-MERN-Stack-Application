@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./navbar.module.css";
 import DarkModeToggle from "../darkmodeToggle/DarkModeToggle";
+import { useCookies } from "react-cookie";
 
 const links = [
   {
@@ -39,10 +40,14 @@ const links = [
 const Navbar = () => {
   const navigate = useNavigate();
 
+  const [cookies, setCookie] = useCookies([]);
+
   const handleLogout = () => {
     // Perform the logout logic here
-    document.cookie = "isLoggedIn=false; path=/";
-    // console.log(document.cookie);
+
+    setCookie("isLoggedIn", "", { expires: new Date(0) });
+    window.location.reload();
+
     navigate("/dashboard/login");
   };
 

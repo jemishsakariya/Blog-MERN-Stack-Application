@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./login.module.css";
+import { useCookies } from "react-cookie";
 
 const Login = () => {
   const [success, setSuccess] = useState(null);
   const [error, setError] = useState(null);
+
+  const [cookies, setCookie] = useCookies([]);
 
   const navigate = useNavigate();
 
@@ -27,9 +30,9 @@ const Login = () => {
 
       if (response.ok) {
         // Login successful
-        // Redirect or perform any necessary actions
-        document.cookie = "isLoggedIn=true";
-        // console.log(document.cookie);
+
+        setCookie("isLoggedIn", "true");
+
         setSuccess("Login successful!");
         navigate("/dashboard");
       } else {
