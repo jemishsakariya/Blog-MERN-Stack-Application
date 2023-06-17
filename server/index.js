@@ -25,6 +25,9 @@ app.use("/api/v1", blog);
 const user = require("./routes/authRoutes");
 app.use("/auth", user);
 
+const mail = require("./routes/mailRoutes");
+app.use("/mail", mail);
+
 //
 app.listen(PORT, () => {
   console.log(`Server is started on PORT no. http://localhost:${PORT}`);
