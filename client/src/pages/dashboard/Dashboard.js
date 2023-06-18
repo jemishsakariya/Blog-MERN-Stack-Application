@@ -12,9 +12,15 @@ const Dashboard = () => {
   useEffect(() => {
     const getData = async () => {
       setIsLoading(true);
-      const res = await fetch("http://localhost:4000/api/v1/getpost", {
-        cache: "no-store",
-      });
+
+      const username = JSON.parse(localStorage.getItem("name"));
+
+      const res = await fetch(
+        `http://localhost:4000/api/v1/getpostbyusername/?username=${username}`,
+        {
+          cache: "no-store",
+        }
+      );
 
       if (!res.ok) {
         setErr(true);

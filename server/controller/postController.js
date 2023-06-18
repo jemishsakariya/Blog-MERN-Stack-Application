@@ -38,6 +38,25 @@ exports.getAllPost = async (req, res) => {
   }
 };
 
+exports.getAllPostByUsername = async (req, res) => {
+  const { username } = req.query;
+  try {
+    const posts = await Post.find({ username });
+
+    res.status(200).json({
+      success: true,
+      message: "Successfull Get All Posts",
+      post: posts,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      error: "Error While Geting Post",
+    });
+  }
+};
+
 exports.getPostById = async (req, res) => {
   try {
     const id = req.params.id;
