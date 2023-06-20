@@ -69,6 +69,7 @@
 
 .text {
     white-space: pre;
+    text-wrap: wrap;
     font-weight: 400;
 }
 
@@ -96,6 +97,5 @@
 
     .text {
         text-wrap: wrap;
-        text-align: justify;
     }
 }
