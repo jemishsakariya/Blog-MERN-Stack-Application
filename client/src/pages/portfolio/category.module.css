@@ -46,3 +46,9 @@
 .desc {
     font-size: 20px;
 }
+
+@media only screen and (max-width: 426px) {
+    .mainTitle {
+        font-size: 4.7rem;
+    }
+}

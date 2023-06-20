@@ -43,7 +43,7 @@ const BlogPost = () => {
         </div>
       </div>
       <div className={styles.content}>
-        <p className={styles.text}>{data.content}</p>
+        <div className={styles.text}>{data.content}</div>
       </div>
     </>
   );

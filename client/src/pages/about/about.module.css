@@ -33,8 +33,25 @@
     gap: 30px;
 }
 
-.desc{
+.desc {
     font-size: 18px;
     font-weight: 300;
     text-align: justify;
+}
+
+@media only screen and (max-width: 426px) {
+    .imgText {
+        left: 0;
+    }
+
+    .imgDesc {
+        font-size: 1.2rem;
+    }
+
+    .textContainer {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 2rem;
+        gap: 0;
+    }
 }

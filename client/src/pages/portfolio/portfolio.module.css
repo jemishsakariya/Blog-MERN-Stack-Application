@@ -61,3 +61,19 @@
     border: 5px solid #53c28b;
     filter: grayscale(0);
 }
+
+@media only screen and (max-width: 426px) {
+    .container {
+        margin-bottom: 2rem;
+    }
+
+    .items {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .selectTitle{
+        font-size: 2rem;
+    }
+}

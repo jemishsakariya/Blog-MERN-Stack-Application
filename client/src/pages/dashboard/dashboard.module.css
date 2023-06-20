@@ -80,3 +80,26 @@
     font-size: 1.4rem;
     font-weight: bold;
 }
+
+@media only screen and (max-width: 426px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 2rem;
+        gap: 0;
+    }
+
+    .imgContainer {
+        flex: 1/1;
+    }
+
+    .imgContainer img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .postTitle {
+        word-break: break-all;
+    }
+}

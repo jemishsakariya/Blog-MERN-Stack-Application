@@ -5,7 +5,7 @@ import Button from "../../components/button/Button";
 
 const About = () => {
   return (
-    <div>
+    <>
       <div className={styles.imgContainer}>
         <img src={aboutImg} alt="img" className={styles.img} />
         <div className={styles.imgText}>
@@ -51,7 +51,7 @@ const About = () => {
           <Button url={"/contact"} text={"Contact"} />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

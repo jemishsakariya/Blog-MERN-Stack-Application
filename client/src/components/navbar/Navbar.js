@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./navbar.module.css";
 import DarkModeToggle from "../darkmodeToggle/DarkModeToggle";
@@ -42,6 +42,8 @@ const Navbar = () => {
 
   const [cookies, setCookie] = useCookies([]);
 
+  const [isNavExpanded, setIsNavExpanded] = useState(false);
+
   const handleLogout = () => {
     // Perform the logout logic here
 
@@ -56,29 +58,90 @@ const Navbar = () => {
         <Link to="/" className={styles.logo}>
           IdeaLinking
         </Link>
-        <div className={styles.links}>
+        <div className={styles.navLink}>
           <DarkModeToggle />
-          {links.map((link) => {
-            return (
-              <Link to={link.url} key={link.id} className={styles.link}>
-                {link.title}
-              </Link>
-            );
-          })}
-          {document.cookie === "isLoggedIn=true" ? (
-            <button className={styles.logout} onClick={handleLogout}>
-              Logout
-            </button>
-          ) : (
-            <button
-              className={styles.logout}
-              onClick={() => {
-                navigate("/dashboard/login");
-              }}
-            >
-              Login
-            </button>
-          )}
+          <div className={styles.links}>
+            {links.map((link) => {
+              return (
+                <Link to={link.url} key={link.id} className={styles.link}>
+                  {link.title}
+                </Link>
+              );
+            })}
+            {document.cookie === "isLoggedIn=true" ? (
+              <button className={styles.logout} onClick={handleLogout}>
+                Logout
+              </button>
+            ) : (
+              <button
+                className={styles.logout}
+                onClick={() => {
+                  navigate("/dashboard/login");
+                }}
+              >
+                Login
+              </button>
+            )}
+          </div>
+        </div>
+        <div className={styles.mobileMenu}>
+          <div className={isNavExpanded ? `${styles.expanded}` : ""}>
+            <div className={styles.icon}>
+              {isNavExpanded ? (
+                <div className={styles.menualign}>
+                  <svg
+                    fill="#ddd"
+                    height="30px"
+                    id="Layer_1"
+                    version="1.1"
+                    viewBox="0 0 512 512"
+                    width="30px"
+                    className={styles.closeButton}
+                    onClick={() => {
+                      setIsNavExpanded(!isNavExpanded);
+                    }}
+                  >
+                    <path d="M437.5,386.6L306.9,256l130.6-130.6c14.1-14.1,14.1-36.8,0-50.9c-14.1-14.1-36.8-14.1-50.9,0L256,205.1L125.4,74.5  c-14.1-14.1-36.8-14.1-50.9,0c-14.1,14.1-14.1,36.8,0,50.9L205.1,256L74.5,386.6c-14.1,14.1-14.1,36.8,0,50.9  c14.1,14.1,36.8,14.1,50.9,0L256,306.9l130.6,130.6c14.1,14.1,36.8,14.1,50.9,0C451.5,423.4,451.5,400.6,437.5,386.6z" />
+                  </svg>
+                  <div className={styles.menuLinks}>
+                    {links.map((link) => {
+                      return (
+                        <Link
+                          to={link.url}
+                          key={link.id}
+                          className={styles.link}
+                          onClick={() => {
+                            setIsNavExpanded(false);
+                          }}
+                        >
+                          {link.title}
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
+              ) : (
+                <svg
+                  fill="none"
+                  height="26"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                  width="26"
+                  xmlns="http://www.w3.org/2000/svg"
+                  onClick={() => {
+                    setIsNavExpanded(!isNavExpanded);
+                  }}
+                >
+                  <line x1="3" x2="21" y1="12" y2="12" />
+                  <line x1="3" x2="21" y1="6" y2="6" />
+                  <line x1="3" x2="21" y1="18" y2="18" />
+                </svg>
+              )}
+            </div>
+          </div>
         </div>
       </div>
     </>

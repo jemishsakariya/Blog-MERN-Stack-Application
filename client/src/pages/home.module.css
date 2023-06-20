@@ -39,3 +39,17 @@
     font-size: 20px;
     font-weight: 300;
 }
+
+@media only screen and (max-width: 426px) {
+    .container {
+        margin-bottom: 2rem;
+    }
+
+    .title {
+        font-size: 2.6rem;
+    }
+
+    .item:nth-child(2) {
+        display: none;
+    }
+}
