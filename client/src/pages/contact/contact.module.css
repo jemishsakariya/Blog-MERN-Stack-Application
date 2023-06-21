@@ -89,4 +89,8 @@
     .title {
         margin-bottom: 1rem;
     }
+
+    .form{
+        width: 16rem;
+    }
 }
