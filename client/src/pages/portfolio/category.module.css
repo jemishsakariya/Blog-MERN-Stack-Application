@@ -51,4 +51,29 @@
     .mainTitle {
         font-size: 4.7rem;
     }
+
+    .imgContainer {
+        width: 18rem;
+    }
+
+    .imgContainer .img {
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .item {
+        display: flex;
+        flex-direction: column-reverse;
+        margin-bottom: 2rem;
+    }
+
+    .item:nth-child(2n) {
+        flex-direction: column-reverse;
+    }
+}
+
+@media only screen and (max-width: 321px) {
+    .imgContainer {
+        width: 15rem;
+    }
 }
