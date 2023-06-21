@@ -52,6 +52,24 @@ const Navbar = () => {
     navigate("/dashboard/login");
   };
 
+  const disableScroll = () => {
+    // Get the current page scroll position in the vertical direction
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+
+    // Get the current page scroll position in the horizontal direction
+    const scrollLeft = window.scrollX || document.documentElement.scrollLeft;
+
+    // if any scroll is attempted,
+    // set this to the previous value
+    window.onscroll = function () {
+      window.scrollTo(scrollLeft, scrollTop);
+    };
+  };
+
+  const enableScroll = () => {
+    window.onscroll = function () {};
+  };
+
   return (
     <>
       <div className={styles.container}>
@@ -85,10 +103,14 @@ const Navbar = () => {
           </div>
         </div>
         <div className={styles.mobileMenu}>
-          <div className={isNavExpanded ? `${styles.expanded}` : ""}>
+          <div
+            className={
+              isNavExpanded ? `${styles.expanded}` : `${styles.notExpanded}`
+            }
+          >
             <div className={styles.icon}>
               {isNavExpanded ? (
-                <div className={styles.menualign}>
+                <div className={styles.menualign} onClick={enableScroll}>
                   <svg
                     fill="#ddd"
                     height="30px"
@@ -135,24 +157,26 @@ const Navbar = () => {
                   </div>
                 </div>
               ) : (
-                <svg
-                  fill="none"
-                  height="26"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  viewBox="0 0 24 24"
-                  width="26"
-                  xmlns="http://www.w3.org/2000/svg"
-                  onClick={() => {
-                    setIsNavExpanded(!isNavExpanded);
-                  }}
-                >
-                  <line x1="3" x2="21" y1="12" y2="12" />
-                  <line x1="3" x2="21" y1="6" y2="6" />
-                  <line x1="3" x2="21" y1="18" y2="18" />
-                </svg>
+                <div onClick={disableScroll}>
+                  <svg
+                    fill="none"
+                    height="26"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    viewBox="0 0 24 24"
+                    width="26"
+                    xmlns="http://www.w3.org/2000/svg"
+                    onClick={() => {
+                      setIsNavExpanded(!isNavExpanded);
+                    }}
+                  >
+                    <line x1="3" x2="21" y1="12" y2="12" />
+                    <line x1="3" x2="21" y1="6" y2="6" />
+                    <line x1="3" x2="21" y1="18" y2="18" />
+                  </svg>
+                </div>
               )}
             </div>
           </div>
