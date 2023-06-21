@@ -49,6 +49,8 @@ const Navbar = () => {
 
     setCookie("isLoggedIn", "", { expires: new Date(0) });
 
+    localStorage.clear();
+
     navigate("/dashboard/login");
   };
 
