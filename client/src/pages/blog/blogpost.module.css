@@ -69,8 +69,11 @@
 
 .text {
     white-space: pre;
-    text-wrap: wrap;
     font-weight: 400;
+}
+
+.text {
+    text-wrap: balance;
 }
 
 @media only screen and (max-width:426px) {
