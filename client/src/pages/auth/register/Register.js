@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./register.module.css";
 import { Link, useNavigate } from "react-router-dom";
+import { BASE_URL } from "../../../utils/config";
 
 const Register = () => {
   const [error, setError] = useState(null);
@@ -21,7 +22,7 @@ const Register = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:4000/auth/dashboard/register",
+        `${BASE_URL}/auth/dashboard/register`,
         {
           method: "POST",
           headers: {

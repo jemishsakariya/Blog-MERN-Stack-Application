@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import styles from "./blog.module.css";
 import { Link } from "react-router-dom";
+import { BASE_URL } from "../../utils/config";
 // import blogImg from "../../assets/blogImg.jpg";
 
 const Blog = () => {
   const [data, setData] = useState([]);
 
   const getData = async () => {
-    const res = await fetch("http://localhost:4000/api/v1/getpost");
+    const res = await fetch(`${BASE_URL}/api/v1/getpost`);
     if (!res.ok) {
       throw new Error("Failed to fetch data");
     }

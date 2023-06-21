@@ -3,6 +3,7 @@ import styles from "./blogpost.module.css";
 // import avatarImg from "../../assets/avatar.jpg";
 // import blogImg from "../../assets/blogImg.jpg";
 import { useParams } from "react-router-dom";
+import { BASE_URL } from "../../utils/config";
 
 const BlogPost = () => {
   const [data, setData] = useState([]);
@@ -10,7 +11,7 @@ const BlogPost = () => {
   const { id } = useParams();
 
   const getData = async () => {
-    const res = await fetch(`http://localhost:4000/api/v1/getpost/${id}`);
+    const res = await fetch(`${BASE_URL}/api/v1/getpost/${id}`);
     if (!res.ok) {
       throw new Error("Failed to fetch data");
     }

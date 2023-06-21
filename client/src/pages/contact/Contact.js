@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./contact.module.css";
 import contactImg from "../../assets/contact.png";
+import { BASE_URL } from "../../utils/config";
 
 const Contact = () => {
   const [error, setError] = useState(null);
@@ -19,7 +20,7 @@ const Contact = () => {
     // e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:4000/mail/contactmail", {
+      const response = await fetch(`${BASE_URL}/mail/contactmail`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

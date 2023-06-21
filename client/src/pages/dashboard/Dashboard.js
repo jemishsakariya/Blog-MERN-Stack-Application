@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./dashboard.module.css";
 import Button from "../../components/button/Button";
+import { BASE_URL } from "../../utils/config";
 
 const Dashboard = () => {
   const [data, setData] = useState([]);
@@ -16,7 +17,7 @@ const Dashboard = () => {
       const username = JSON.parse(localStorage.getItem("name"));
 
       const res = await fetch(
-        `http://localhost:4000/api/v1/getpostbyusername/?username=${username}`,
+        `${BASE_URL}/api/v1/getpostbyusername/?username=${username}`,
         {
           cache: "no-store",
         }
@@ -42,7 +43,7 @@ const Dashboard = () => {
     const content = e.target[3].value;
 
     try {
-      await fetch("http://localhost:4000/api/v1/createpost", {
+      await fetch(`${BASE_URL}/api/v1/createpost`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -63,7 +64,7 @@ const Dashboard = () => {
 
   const handleDelete = async (id) => {
     try {
-      await fetch(`http://localhost:4000/api/v1/getpost/${id}`, {
+      await fetch(`${BASE_URL}/api/v1/getpost/${id}`, {
         method: "DELETE",
       });
     } catch (err) {
@@ -99,7 +100,12 @@ const Dashboard = () => {
           <h1>Add New Post</h1>
           <input type="text" placeholder="Title" className={styles.input} />
           <input type="text" placeholder="Desc" className={styles.input} />
-          <input type="text" placeholder="Image Link" className={styles.input} required />
+          <input
+            type="text"
+            placeholder="Image Link"
+            className={styles.input}
+            required
+          />
           <textarea
             placeholder="Content"
             className={styles.textArea}

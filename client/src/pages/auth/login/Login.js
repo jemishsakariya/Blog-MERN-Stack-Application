@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./login.module.css";
 import { useCookies } from "react-cookie";
+import { BASE_URL } from "../../../utils/config";
 
 const Login = () => {
   const [success, setSuccess] = useState(null);
@@ -17,16 +18,13 @@ const Login = () => {
     const password = e.target[1].value;
 
     try {
-      const response = await fetch(
-        "http://localhost:4000/auth/dashboard/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, password }),
-        }
-      );
+      const response = await fetch(`${BASE_URL}/auth/dashboard/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
 
       if (response.ok) {
         // Login successful
